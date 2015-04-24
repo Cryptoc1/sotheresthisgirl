@@ -3,7 +3,7 @@
 # Shitty code, deal with it.
 
 import twitter
-import time
+import time, sys
 
 def unfav(api, u):
     favs = api.GetFavorites(u.id)
@@ -25,48 +25,13 @@ def main():
     _faved = "faved tweet by: @"
     _post = "posted update"
     
-    i = 1
-    j = 1
-    k = 0
-    l = 0
+    # i = 1
+    # j = 1
+    k = sys.argv[1]
+    l = sys.argv[2]
     while True:
-        '''search = api.GetSearch("\"so there's this girl\"")
-        for s in search:
-            if api.GetStatus(str(s.id)).favorited:
-                print _skip + s.user.screen_name + _al_fav
-            else:
-                api.CreateFavorite(s)
-                print _faved + s.user.screen_name
-        search = api.GetSearch("\"so theres this girl\"")
-        for s in search:
-            if api.GetStatus(str(s.id)).favorited:
-                print _skip + s.user.screen_name + _al_fav
-            else:
-                api.CreateFavorite(s)
-                print _faved + s.user.screen_name
-        search = api.GetSearch("\"So there's a girl\"")
-        for s in search:
-            if api.GetStatus(str(s.id)).favorited:
-                print _skip + s.user.screen_name + _al_fav
-            else:
-                api.CreateFavorite(s)
-                print _faved + s.user.screen_name
-        search = api.GetSearch("\"So theres this girl\"")
-        for s in search:
-            if api.GetStatus(str(s.id)).favorited:
-                print _skip + s.user.screen_name + _al_fav
-            else:
-                api.CreateFavorite(s)
-                print _faved + s.user.screen_name
-        search = api.GetSearch("#sotheresthisgirl")
-        for s in search:
-            if api.GetStatus(str(s.id)).favorited:
-                print _skip + s.user.screen_name + _al_fav
-            else:
-                api.CreateFavorite(s)
-                print _faved + s.user.screen_name'''
-        
-        # should post updates with spaces from 0 to 123 spaces
+        # we already finished this off, so don't need it anymore
+        '''# should post updates with spaces from 0 to 123 spaces
         if i < 123:
             tmp = "." * i
             api.PostUpdate(tmp + "#sotheresthisgirl")
@@ -77,7 +42,7 @@ def main():
             tmp = "." * j
             api.PostUpdate(tmp + "so there's this girl")
             api.PostUpdate("so there's this girl" + tmp)
-            print _post
+            print _post'''
         # should print numbers until the number is 122 (becuase there's a space between the number and the hashtag) digits long
         if len(str(k)) < 122:
            api.PostUpdate("#sotheresthisgirl " + str(k))
@@ -89,8 +54,8 @@ def main():
 
         # Waits ~10mins (if my math is correct)
         time.sleep(300)
-        i += 1
-        j += 1
+        # i += 1
+        # j += 1
         k += 1
         l += 1
 
