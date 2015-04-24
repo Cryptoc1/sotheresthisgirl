@@ -68,13 +68,13 @@ def main():
         
         # should post updates with spaces from 0 to 123 spaces
         if i < 123:
-            tmp = " " * i
+            tmp = "." * i
             api.PostUpdate(tmp + "#sotheresthisgirl")
             api.PostUpdate("#sotheresthisgirl" + tmp)
             print _post
         # should post updates with spaces from 0 to 120 spaces
         if j < 120:
-            tmp = " " * j
+            tmp = "." * j
             api.PostUpdate(tmp + "so there's this girl")
             api.PostUpdate("so there's this girl" + tmp)
             print _post
