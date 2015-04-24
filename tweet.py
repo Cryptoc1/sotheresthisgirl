@@ -53,7 +53,7 @@ def main():
             print _post
 
         # Waits ~10mins (if my math is correct)
-        time.sleep(300)
+        time.sleep(200)
         # i += 1
         # j += 1
         k += 1
