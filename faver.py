@@ -51,6 +51,9 @@ def main():
             else:
                 api.CreateFavorite(s)
                 print _faved + s.user.screen_name
+        
+        time.sleep(10)
+
         search = api.GetSearch("\"So theres this girl\"")
         for s in search:
             if api.GetStatus(str(s.id)).favorited:
