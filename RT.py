@@ -8,23 +8,23 @@ import os, time
 _skip = "Skipping tweet by @"
 _rt = "Retweeted tweet by @"
 
-def retweeted(api, s):
+def retweeted(api, s, my_id):
     rts = api.retweets(s.id)
-    rted = None
+    ret = None
     for rt in rts:
-        if rt.user.id == api.me().id:
-            rted = True
+        if rt.user.id == my_id:
+            ret = True
         else:
-            rted = False
-    return rted
+            ret = False
+    return ret
 
-def tweet_by_me(api, s):
-    tweeted_by_me = None
-    if s.user.id == api.me().id:
-        tweeted_by_me = True
+def tweet_by_me(api, s, my_id):
+    ret = None
+    if s.user.id == my_id:
+        ret = True
     else:
-        tweeted_by_me = False
-    return tweeted_by_me
+        ret = False
+    return ret
 
 def main():
     consumer_key = "v8xVBZlXBp2AJoWI3VjDjzDkC"
@@ -38,10 +38,12 @@ def main():
 
     api = tweepy.API(auth)
 
+    my_id = api.me().id
+    
     while True:
         search = api.search("\"so there's this girl\"")
         for s in search:
-            if retweeted(api, s) or tweet_by_me(api, s):
+            if retweeted(api, s, my_id) or tweet_by_me(api, s, my_id):
                 print _skip + s.user.screen_name
             else:
                 api.retweet(s.id)
@@ -50,7 +52,7 @@ def main():
 
         search = api.search("\"so theres this girl\"")
         for s in search:
-            if retweeted(api, s) or tweet_by_me(api, s):
+            if retweeted(api, s, my_id) or tweet_by_me(api, s, my_id):
                 print _skip + s.user.screen_name
             else:
                 api.retweet(s.id)
@@ -59,7 +61,7 @@ def main():
         
         search = api.search("\"#sotheresthisgirl\"")
         for s in search:
-            if retweeted(api, s) or tweet_by_me(api, s):
+            if retweeted(api, s) or tweet_by_me(api, s, my_id):
                 print _skip + s.user.screen_name
             else:
                 api.rewteet(s.id)
