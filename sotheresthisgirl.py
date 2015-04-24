@@ -68,15 +68,15 @@ def main():
         
         # should post updates with spaces from 0 to 123 spaces
         if i < 123:
-            str = " " * i
-            api.PostUpdate(str + "#sotheresthisgirl")
-            api.PostUpdate("#sotheresthisgirl" + str)
+            tmp = " " * i
+            api.PostUpdate(tmp + "#sotheresthisgirl")
+            api.PostUpdate("#sotheresthisgirl" + tmp)
             print _post
         # should post updates with spaces from 0 to 120 spaces
         if j < 120:
-            str = " " * j
-            api.PostUpdate(str + "so there's this girl")
-            api.PostUpdate("so there's this girl" + str)
+            tmp = " " * j
+            api.PostUpdate(tmp + "so there's this girl")
+            api.PostUpdate("so there's this girl" + tmp)
             print _post
         # should print numbers until the number is 122 (becuase there's a space between the number and the hashtag) digits long
         if len(str(k)) < 122:
