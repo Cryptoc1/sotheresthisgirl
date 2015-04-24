@@ -27,8 +27,8 @@ def main():
     
     # i = 1
     # j = 1
-    k = sys.argv[1]
-    l = sys.argv[2]
+    k = int(sys.argv[1])
+    l = int(sys.argv[2])
     while True:
         # we already finished this off, so don't need it anymore
         '''# should post updates with spaces from 0 to 123 spaces
