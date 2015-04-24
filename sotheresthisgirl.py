@@ -25,8 +25,8 @@ def main():
     _faved = "faved tweet by: @"
     _post = "posted update"
     
-    i = 0
-    j = 0
+    i = 1
+    j = 1
     k = 0
     l = 0
     while True:
