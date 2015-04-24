@@ -10,19 +10,21 @@ _rt = "Retweeted tweet by @"
 
 def retweeted(api, s):
     rts = api.retweets(s.id)
+    rted = None
     for rt in rts:
         if rt.user.id == api.me().id:
-            ret = True
+            rted = True
         else:
-            ret = False
-    return ret
+            rted = False
+    return rted
 
 def tweet_by_me(api, s):
+    tweeted_by_me = None
     if s.user.id == api.me().id:
-        ret = True
+        tweeted_by_me = True
     else:
-        ret = False
-    return ret
+        tweeted_by_me = False
+    return tweeted_by_me
 
 def main():
     consumer_key = "v8xVBZlXBp2AJoWI3VjDjzDkC"
