@@ -10,12 +10,14 @@ _rt = "Retweeted tweet by @"
 
 def retweeted(api, s, my_id):
     rts = api.retweets(s.id)
-    ret = None
+    # ret = None
     for rt in rts:
         if rt.user.id == my_id:
             ret = True
+            break
         else:
             ret = False
+    print ret
     return ret
 
 def tweet_by_me(api, s, my_id):
@@ -48,7 +50,7 @@ def main():
             else:
                 api.retweet(s.id)
                 print _rt + s.user.screen_name
-        time.sleep(4)
+        # time.sleep(4)
 
         search = api.search("\"so theres this girl\"")
         for s in search:
@@ -57,7 +59,7 @@ def main():
             else:
                 api.retweet(s.id)
                 print _rt + s.user.screen_name
-        time.sleep(4)
+        # time.sleep(4)
         
         search = api.search("\"#sotheresthisgirl\"")
         for s in search:
@@ -66,7 +68,7 @@ def main():
             else:
                 api.rewteet(s.id)
                 print _rt + s.user.screen_name
-        time.sleep(4)
+        # time.sleep(4)
 
         time.sleep(300)
 
