@@ -1,61 +1,9 @@
 #!/usr/bin/env python
 
-# Shitty code, deal with it. (atleast it's better than Instagram.py)
+# Shitty code, deal with it.
 
 import twitter
-from requests_oauthlib import OAuth1Session
-import webbrowser, os, sys, time
-
-REQUEST_TOKEN_URL = 'https://api.twitter.com/oauth/request_token'
-ACCESS_TOKEN_URL = 'https://api.twitter.com/oauth/access_token'
-AUTHORIZATION_URL = 'https://api.twitter.com/oauth/authorize'
-SIGNIN_URL = 'https://api.twitter.com/oauth/authenticate'
-
-
-'''def get_access_token(consumer_key, consumer_secret):
-    oauth_client = OAuth1Session(consumer_key, client_secret=consumer_secret)
-
-    print 'Requesting temp token from Twitter'
-
-    try:
-        resp = oauth_client.fetch_request_token(REQUEST_TOKEN_URL)
-    except ValueError, e:
-        print 'Invalid respond from Twitter requesting temp token: %s' % e
-        return
-    url = oauth_client.authorization_url(AUTHORIZATION_URL)
-
-    print ''
-    print 'I will try to start a browser to visit the following Twitter page'
-    print 'if a browser will not start, copy the URL to your browser'
-    print 'and retrieve the pincode to be used'
-    print 'in the next step to obtaining an Authentication Token:'
-    print ''
-    print url
-    print ''
-
-    webbrowser.open(url)
-    print "Enter code prompted after leaving twitter."
-    pincode = raw_input("> ")
-
-    print ''
-    print 'Generating and signing request for an access token'
-    print ''
-
-    oauth_client = OAuth1Session(consumer_key, client_secret=consumer_secret,
-                                 resource_owner_key=resp.get('oauth_token'),
-                                 resource_owner_secret=resp.get('oauth_token_secret'),
-                                 verifier=pincode
-    )
-    try:
-        resp = oauth_client.fetch_access_token(ACCESS_TOKEN_URL)
-    except ValueError, e:
-        print 'Invalid respond from Twitter requesting access token: %s' % e
-        return
-
-    # print 'Your Twitter Access Token key: %s' % resp.get('oauth_token')
-    # print '          Access Token secret: %s' % resp.get('oauth_token_secret')
-    print "Authenticated"
-    return {'access_token': resp.get('oauth_token'), 'access_secret': resp.get('oauth_token_secret')}'''
+import time
 
 def unfav(api, u):
     favs = api.GetFavorites(u.id)
@@ -75,30 +23,35 @@ def main():
     _skip = "skipping tweet by: @"
     _al_fav = " (most likely already favorited it)"
     _faved = "faved tweet by: @"
-
+    _post = "posted update"
+    
+    i = 0
+    j = 0
+    k = 0
+    l = 0
     while True:
-        search = api.GetSearch("so there's this girl")
+        search = api.GetSearch("\"so there's this girl\"")
         for s in search:
             if api.GetStatus(str(s.id)).favorited:
                 print _skip + s.user.screen_name + _al_fav
             else:
                 api.CreateFavorite(s)
                 print _faved + s.user.screen_name
-        search = api.GetSearch("so theres this girl")
+        search = api.GetSearch("\"so theres this girl\"")
         for s in search:
             if api.GetStatus(str(s.id)).favorited:
                 print _skip + s.user.screen_name + _al_fav
             else:
                 api.CreateFavorite(s)
                 print _faved + s.user.screen_name
-        search = api.GetSearch("So there's a girl")
+        search = api.GetSearch("\"So there's a girl\"")
         for s in search:
             if api.GetStatus(str(s.id)).favorited:
                 print _skip + s.user.screen_name + _al_fav
             else:
                 api.CreateFavorite(s)
                 print _faved + s.user.screen_name
-        search = api.GetSearch("So theres this girl")
+        search = api.GetSearch("\"So theres this girl\"")
         for s in search:
             if api.GetStatus(str(s.id)).favorited:
                 print _skip + s.user.screen_name + _al_fav
@@ -112,11 +65,34 @@ def main():
             else:
                 api.CreateFavorite(s)
                 print _faved + s.user.screen_name
-
-        status = api.PostUpdate("so there's this girl")
-        status = api.PostUpdate("#sotheresthisgirl")
         
-        time.sleep(5)
+        # should post updates with spaces from 0 to 123 spaces
+        if i < 123:
+            str = " " * i
+            api.PostUpdate(str + "#sotheresthisgirl")
+            api.PostUpdate("#sotheresthisgirl" + str)
+            print _post
+        # should post updates with spaces from 0 to 120 spaces
+        if j < 120:
+            str = " " * j
+            api.PostUpdate(str + "so there's this girl")
+            api.PostUpdate("so there's this girl" + str)
+            print _post
+        # should print numbers until the number is 122 (becuase there's a space between the number and the hashtag) digits long
+        if len(str(k)) < 122:
+           api.PostUpdate("#sotheresthisgirl " + str(k))
+           print _post
+        # should post update until the number is 119 (because the space between, yada, yada..) digits long, yada, yada..."
+        if len(str(l)) < 119:
+            api.PostUpdate("so there's this girl " + str(l))
+            print _post
+
+        # Waits ~10mins (if my math is correct)
+        time.sleep(600)
+        i += 1
+        j += 1
+        k += 1
+        l += 1
 
 if __name__ == "__main__":
     main()
