@@ -10,18 +10,17 @@ _rt = "Retweeted tweet by @"
 
 def retweeted(api, s, my_id):
     rts = api.retweets(s.id)
-    # ret = None
-    for rt in rts:
-        if rt.user.id == my_id:
-            ret = True
-            break
-        else:
-            ret = False
-    print ret
+    if len(rts) > 0:
+        for rt in rts:
+            if rt.user.id == my_id:
+                ret = True
+            else:
+                ret = False
+    else:
+        ret = False
     return ret
 
 def tweet_by_me(api, s, my_id):
-    ret = None
     if s.user.id == my_id:
         ret = True
     else:
