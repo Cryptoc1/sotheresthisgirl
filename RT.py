@@ -5,8 +5,8 @@
 import tweepy
 import os, time
 
-_skip = "Skipping tweet by @"
-_rt = "Retweeted tweet by @"
+_skip = " [sotheresthisgirl] Skipping tweet by @"
+_rt = " [sotheresthisgirl] Retweeted tweet by @"
 
 def retweeted(api, s, my_id):
     rts = api.retweets(s.id)

@@ -5,12 +5,6 @@
 import twitter
 import time
 
-def unfav(api, u):
-    favs = api.GetFavorites(u.id)
-    api.DestroyFavorite(favs[0])
-    print "Tweet unfavorited..."
-    time.sleep(2)
-
 def main():
     consumer_key = "v8xVBZlXBp2AJoWI3VjDjzDkC"
     consumer_secret = "Wpoom4N6tpTgfywzCt6y83gvZubbYoT0vL0V8FXzhyXA74218D"
@@ -20,10 +14,10 @@ def main():
             access_token_key="3200038924-6twEw6XbQ19ibc8Fnt7qI8blFEkSNI5BCqFnPL3",
             access_token_secret="bgqS52Hcg53PXhX5qrk3z5k5oK7F6rRg3yIQKzzZO9iXd")
     
-    _skip = "skipping tweet by: @"
+    _skip = " [sotheresthisgirl] skipping tweet by: @"
     _al_fav = " (most likely already favorited it)"
-    _faved = "faved tweet by: @"
-    _post = "posted update"
+    _faved = " [sotheresthisgirl] faved tweet by: @"
+    _post = " [sotheresthisgirl] posted update"
     
     '''i = 1
     j = 1
